@@ -4,6 +4,7 @@ import Delivery  from './Delivery';
 
 function App() {
   const [id, setId] = useState('')
+
   const submit = async (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -31,11 +32,11 @@ function App() {
               <input type='number' name='budget' className='form-control' placeholder='Budget'/>
             </div>
             <div className='mb-3'>
-              <input type='text' name='notes' className='form-control' placeholder='Notes'/>
+              <textarea type='text' name='notes' className='form-control' placeholder='Notes'/>
             </div>
             <button className='btn btn-primary'>Submit</button>
           </form>
-        </div> : <Delivery/>}
+        </div> : <Delivery id={id}/>}
       </div> 
     </div>
   );
