@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import { useState } from 'react';
 import Delivery  from './Delivery';
+import { API_BASE_URL } from "./settings.js";
 
 function App() {
   const [id, setId] = useState('')
@@ -9,7 +10,7 @@ function App() {
     e.preventDefault();
     const form = new FormData(e.target);
     const data = Object.fromEntries(form.entries());
-    const responce = await fetch('http://localhost:8000/deliveries/create',{
+    const responce = await fetch(`${API_BASE_URL}/deliveries/create`,{
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

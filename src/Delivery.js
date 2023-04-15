@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { API_BASE_URL } from "./settings.js";
 const Delivery = (props) => {
     const [state, setState] = useState({});
     const [refresh, setRefresh] = useState(false)
     useEffect( () => {
         (async () => {
-            const responce = await fetch(`http://localhost:8000/deliveries/${props.id}/status`);
+            const responce = await fetch(`${API_BASE_URL}/deliveries/${props.id}/status`);
             const data = await responce.json();
             setState(data);
         })()
@@ -15,7 +16,7 @@ const Delivery = (props) => {
         e.preventDefault();
         const form = new FormData(e.target);
         const data = Object.fromEntries(form.entries());
-        const responce = await fetch('http://localhost:8000/event',{
+        const responce = await fetch(`${API_BASE_URL}/event`,{
           method: "POST",
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
